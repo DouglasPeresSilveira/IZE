@@ -14,20 +14,27 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
+            align-items: center; /* Alinhar itens no centro horizontalmente */
             height: 100vh;
+            overflow: hidden; /* Evitar rolagem */
         }
         .container {
             padding: 20px;
+            box-sizing: border-box; /* Inclui o padding na largura total do elemento */
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Centraliza conteúdo dentro do contêiner */
         }
         h1 {
-            margin-bottom: 50px; /* Ajusta a margem inferior do t�tulo */
+            margin-bottom: 50px; /* Ajusta a margem inferior do título */
+            font-size: 2em; /* Ajusta o tamanho da fonte do título */
         }
         .message {
-            font-size: 24px;
+            font-size: 1.5em; /* Ajusta o tamanho da fonte da mensagem */
             margin-bottom: 20px;
         }
         .contact {
-            font-size: 18px;
+            font-size: 1.2em; /* Ajusta o tamanho da fonte do contato */
             color: #0000ee;
             text-decoration: none;
         }
@@ -36,10 +43,31 @@
         }
         .image {
             margin-top: 20px;
+            width: 100%; /* Largura fixa para a imagem */
+            max-width: 612px; /* Largura máxima */
+            height: auto; /* Altura automática */
+            display: flex;
+            justify-content: center; /* Centraliza a imagem horizontalmente */
         }
         .image img {
-            max-width: 80%; /* Ajusta a largura m�xima da imagem */
-            height: auto;
+            width: 100%; /* Largura total do contêiner */
+            height: auto; /* Altura automática para manter a proporção */
+            object-fit: cover; /* Cobrir o contêiner mantendo a proporção */
+        }
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.5em; /* Ajusta o tamanho da fonte do título em telas menores */
+                margin-bottom: 30px; /* Reduz a margem inferior do título em telas menores */
+            }
+            .message {
+                font-size: 1.2em; /* Ajusta o tamanho da fonte da mensagem em telas menores */
+            }
+            .contact {
+                font-size: 1em; /* Ajusta o tamanho da fonte do contato em telas menores */
+            }
+            .image {
+                width: 90%; /* Largura relativa maior para a imagem em telas menores */
+            }
         }
     </style>
 </head>
@@ -49,8 +77,27 @@
         <p class="message">Site em construcao</p>
         <p>Entre em contato <a class="contact" href="https://taggo.one/douglasperes">aqui</a></p>
         <div class="image">
-            <img src="https://media.istockphoto.com/id/617888224/photo/funny-1980s-computer-man-at-desk-with-coffee.jpg?s=612x612&w=0&k=20&c=kygB09us_JLb5FuUiPpSixK7d2nH0j7T7zm5zzjrYcE=" alt="Imagem engra�ada de tecnologia">
+            <img id="techImage" src="https://i.imgur.com/tE9LAkN.jpeg" alt="Imagem engraçada de tecnologia">
         </div>
     </div>
+    <script>
+        // URLs das imagens
+        const images = [
+            "https://i.imgur.com/tE9LAkN.jpeg",
+            "https://i.imgur.com/irl67NB.jpeg",
+            "https://i.imgur.com/irpI1QW.jpeg",
+            "https://i.imgur.com/gvFfJTH.jpeg",
+            "https://i.imgur.com/kLOU4E6.jpeg"
+        ];
+
+        let currentIndex = 0;
+
+        function changeImage() {
+            currentIndex = (currentIndex + 1) % images.length;
+            document.getElementById('techImage').src = images[currentIndex];
+        }
+
+        setInterval(changeImage, 2000); // Troca a imagem a cada 2 segundos
+    </script>
 </body>
 </html>
