@@ -1,103 +1,126 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IZE TEC - Site em Construcao</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background: linear-gradient(to right, #ff7e5f, #feb47b); /* Gradiente de cor de fundo */
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center; /* Alinhar itens no centro horizontalmente */
-            height: 100vh;
-            overflow: hidden; /* Evitar rolagem */
-        }
-        .container {
-            padding: 20px;
-            box-sizing: border-box; /* Inclui o padding na largura total do elemento */
-            display: flex;
-            flex-direction: column;
-            align-items: center; /* Centraliza conteúdo dentro do contêiner */
-        }
-        h1 {
-            margin-bottom: 50px; /* Ajusta a margem inferior do título */
-            font-size: 2em; /* Ajusta o tamanho da fonte do título */
-        }
-        .message {
-            font-size: 1.5em; /* Ajusta o tamanho da fonte da mensagem */
-            margin-bottom: 20px;
-        }
-        .contact {
-            font-size: 1.2em; /* Ajusta o tamanho da fonte do contato */
-            color: #0000ee;
-            text-decoration: none;
-        }
-        .contact:hover {
-            text-decoration: underline;
-        }
-        .image {
-            margin-top: 20px;
-            width: 100%; /* Largura fixa para a imagem */
-            max-width: 612px; /* Largura máxima */
-            height: auto; /* Altura automática */
-            display: flex;
-            justify-content: center; /* Centraliza a imagem horizontalmente */
-        }
-        .image img {
-            width: 100%; /* Largura total do contêiner */
-            height: auto; /* Altura automática para manter a proporção */
-            object-fit: cover; /* Cobrir o contêiner mantendo a proporção */
-        }
-        @media (max-width: 600px) {
-            h1 {
-                font-size: 1.5em; /* Ajusta o tamanho da fonte do título em telas menores */
-                margin-bottom: 30px; /* Reduz a margem inferior do título em telas menores */
-            }
-            .message {
-                font-size: 1.2em; /* Ajusta o tamanho da fonte da mensagem em telas menores */
-            }
-            .contact {
-                font-size: 1em; /* Ajusta o tamanho da fonte do contato em telas menores */
-            }
-            .image {
-                width: 90%; /* Largura relativa maior para a imagem em telas menores */
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IZE TEC - Site em Construção</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background: linear-gradient(to right, #ff7e5f, #feb47b);
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .container {
+      padding: 20px;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* ... (seus outros estilos CSS existentes) ... */
+
+    #openFullscreenButton {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 50px;
+      height: 50px;
+      background-color: #333;
+      color: white;
+      border: none;
+      cursor: pointer;
+      z-index: 1000;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1>IZE TEC</h1>
-        <p class="message">Site em construcao</p>
-        <p>Entre em contato <a class="contact" href="https://taggo.one/douglasperes">aqui</a></p>
-        <div class="image">
-            <img id="techImage" src="https://i.imgur.com/96CL6i3.jpeg" alt="Imagem engraçada de tecnologia">
-        </div>
+  <div class="container">
+    <h1>IZE TEC</h1>
+    <p class="message">Site em construcao</p>
+    <p>Entre em contato <a class="contact" href="https://taggo.one/douglasperes">aqui</a></p>
+    <div class="image">
+      <img id="techImage" src="https://i.imgur.com/96CL6i3.jpeg" alt="Imagem engraçada de tecnologia">
     </div>
-    <script>
-        // URLs das imagens
-        const images = [
-            "https://i.imgur.com/96CL6i3.jpeg",
-            "https://i.imgur.com/9Om4RjV.jpeg",
-            "https://i.imgur.com/zc326oe.jpeg",
-            "https://i.imgur.com/2X2tXQU.jpeg",
-            "https://i.imgur.com/pJMwoAC.jpeg"
-        ];
+  </div>
 
-        let currentIndex = 0;
+  <script>
+    // URLs das imagens
+    const images = [
+      "https://i.imgur.com/96CL6i3.jpeg",
+      "https://i.imgur.com/9Om4RjV.jpeg",
+      "https://i.imgur.com/zc326oe.jpeg",
+      "https://i.imgur.com/2X2tXQU.jpeg",
+      "https://i.imgur.com/pJMwoAC.jpeg"
+    ];
 
-        function changeImage() {
-            currentIndex = (currentIndex + 1) % images.length;
-            document.getElementById('techImage').src = images[currentIndex];
-        }
+    let currentIndex = 0;
 
-        setInterval(changeImage, 2000); // Troca a imagem a cada 2 segundos
-    </script>
+    function changeImage() {
+      currentIndex = (currentIndex + 1) % images.length;
+      document.getElementById('techImage').src = images[currentIndex];
+    }
+
+    setInterval(changeImage, 2000); // Troca a imagem a cada 2 segundos
+
+    // Função para criar e estilizar o botão
+    function createFullscreenButton() {
+      const button = document.createElement('button');
+      button.id = 'openFullscreenButton';
+      button.textContent = 'Fundo';
+      button.onclick = openFullscreen;
+
+      button.style.cssText = `
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+        background-color: #333;
+        color: white;
+        border: none;
+        cursor: pointer;
+        z-index: 1000;
+      `;
+
+      document.body.appendChild(button);
+    }
+
+    // Cria o botão quando a página terminar de carregar
+    window.addEventListener('load', createFullscreenButton);
+
+    // Função para abrir a imagem em tela cheia
+    function openFullscreen() {
+      const img = new Image();
+      img.src = "https://raw.githubusercontent.com/DouglasPeresSilveira/IZE/main/LOGOTIPO-FUNDO-4K.jpg";
+      img.id = 'fullscreenImage';
+
+      // Estiliza a imagem para tela cheia
+      img.style.position = 'fixed';
+      img.style.top = '0';
+      img.style.left = '0';
+      img.style.width = '100%';
+      img.style.height = '100%';
+      img.style.objectFit = 'contain';
+      img.style.zIndex = '1000';
+
+      // Adiciona a imagem ao corpo do documento
+      document.body.appendChild(img);
+
+      // Solicita a exibição em tela cheia após o carregamento da imagem
+      img.onload = () => {
+        img.requestFullscreen();
+      };
+    }
+  </script>
 </body>
 </html>
